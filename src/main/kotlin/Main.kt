@@ -10,7 +10,8 @@ fun main(args: Array<String>) {
         token = ""
         dispatch {
             command("start") {
-                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Enter /authorize O42GOKANL8 password")
+                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Repeat the command below in one message")
+                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "/authorize O42GOKANL8 password")
                 bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "And you will get the token")
             }
             command("authorize") {
@@ -20,7 +21,10 @@ fun main(args: Array<String>) {
                 val laravelProject = ShellLocation.HOME.resolve("C:/projects/test-assigment")
 
                 val token = shellRun("php", listOf("artisan", "command:authorize", this.args[0], this.args[1]), laravelProject)
-                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = "Your token is: $token")
+
+                println(token)
+
+                bot.sendMessage(chatId = ChatId.fromId(message.chat.id), text = token)
             }
         }
     }
